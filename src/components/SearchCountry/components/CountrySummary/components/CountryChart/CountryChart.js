@@ -29,15 +29,16 @@ class CountryChart extends Component {
     }
 
     retrieveDailyData = (cname) => {
-        let url = `https://api.covid19api.com/dayone/country/${cname}`;
+        let url = `https://api.covid19api.com/total/country/${cname}`;
 
         axios.get(url).then(
             (res) => {
-                res.data.map((each) => {
+                let temp_data = res.data;
+                temp_data.map((each) => {
                     each.Date = this.getFormattedDate(new Date(each.Date));
                     return each;
                 });
-                this.setState({data: res.data}, () => {
+                this.setState({data: temp_data}, () => {
                     this.setState({apiError: false});
                 });
             }
