@@ -100,7 +100,7 @@ const styles = (theme) => ({
     },
     autocompleteSearchInput: {
         width: "50%",
-        minWidth: "400px",
+        minWidth: "300px",
         margin: "30px auto 0px"
     },
     resizeTextField: {

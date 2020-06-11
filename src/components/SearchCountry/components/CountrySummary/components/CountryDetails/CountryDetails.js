@@ -1,14 +1,30 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Paper, Typography, Grid, withStyles } from "@material-ui/core";
+import { Card, Typography, Grid, withStyles, CardContent } from "@material-ui/core";
 
 class CountryDetails extends Component {
+
+    constructor(props) {
+        super(props)
+    
+        this.state = {
+            country: this.props.countryDetails
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        if(prevProps.countryDetails.Country !== this.props.countryDetails.Country) {
+            this.setState({country: this.props.countryDetails});
+        }
+    }
+    
+
     render() {
 
         const classes = this.props.classes;
         const countryDetails = this.props.countryDetails;
         const updateDate = countryDetails.Date.slice(0,10);
-        const totalActiveCases = countryDetails.TotalConfirmed - countryDetails.TotalRecovered - countryDetails.TotalDeaths;
+        const activeCases = countryDetails.TotalConfirmed - countryDetails.TotalRecovered - countryDetails.TotalDeaths;
         return (
             <Grid container item spacing={2}>
                 <Grid item xs={12}>
@@ -16,29 +32,37 @@ class CountryDetails extends Component {
                     <Typography variant="body1">last updated: {updateDate}</Typography>
                 </Grid>
                 <Grid container item xs={12} spacing={1}>
-                    <Grid item xs={3}>
-                        <Paper variant="outlined" className={classes.paperStyles}>
-                            <Typography variant="h5">Total Confirmed</Typography>
-                            <Typography variant="h6">{countryDetails.TotalConfirmed}</Typography>
-                        </Paper>
+                    <Grid item xs={6} md={3}>
+                        <Card variant="outlined" className={classes.CardStyles}>
+                            <CardContent>                         
+                                <Typography variant="h6">Total Confirmed</Typography>
+                                <Typography variant="h6">{countryDetails.TotalConfirmed}</Typography>
+                            </CardContent>
+                        </Card>
                     </Grid>
-                    <Grid item xs={3}>
-                        <Paper variant="outlined" className={classes.paperStyles}>
-                            <Typography variant="h5">Total Active Cases</Typography>
-                            <Typography variant="h6">{totalActiveCases}</Typography>
-                        </Paper>
+                    <Grid item xs={6} md={3}>
+                        <Card variant="outlined" className={classes.CardStyles}>
+                            <CardContent> 
+                                <Typography variant="h6">Active Cases</Typography>
+                                <Typography variant="h6">{activeCases}</Typography>
+                            </CardContent>
+                        </Card>
                     </Grid>
-                    <Grid item xs={3}>
-                        <Paper variant="outlined" className={classes.paperStyles}>
-                            <Typography variant="h5">Total Recovered</Typography>
-                            <Typography variant="h6">{countryDetails.TotalRecovered}</Typography>
-                        </Paper>
+                    <Grid item xs={6} md={3}>
+                        <Card variant="outlined" className={classes.CardStyles}>
+                            <CardContent>
+                                <Typography variant="h6">Total Recovered</Typography>
+                                <Typography variant="h6">{countryDetails.TotalRecovered}</Typography>
+                            </CardContent>
+                        </Card>
                     </Grid>
-                    <Grid item xs={3}>
-                        <Paper variant="outlined" className={classes.paperStyles}>
-                            <Typography variant="h5">Total Deaths</Typography>
-                            <Typography variant="h6">{countryDetails.TotalDeaths}</Typography>
-                        </Paper>
+                    <Grid item xs={6} md={3}>
+                        <Card variant="outlined" className={classes.CardStyles}>
+                            <CardContent>
+                                <Typography variant="h6">Total Deaths</Typography>
+                                <Typography variant="h6">{countryDetails.TotalDeaths}</Typography>
+                            </CardContent>
+                        </Card>
                     </Grid>
                 </Grid>
             </Grid>
@@ -65,8 +89,8 @@ const styles = {
     countryDetails_Wrapper: {
         width: "100%"
     },
-    paperStyles: {
-
+    CardStyles: {
+        width: "100%"
     }
 }
 

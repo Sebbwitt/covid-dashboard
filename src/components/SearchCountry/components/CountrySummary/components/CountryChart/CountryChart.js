@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Paper, Typography } from "@material-ui/core";
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
+import { LineChart, Line, Legend, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 import axios from "axios";
 
 
@@ -11,7 +11,6 @@ class CountryChart extends Component {
         super(props);
         this.state = {
             countryName: this.props.countryName,
-            countryStatus: this.props.countryStatus,
             data: [],
             apiError: false
         };
@@ -24,15 +23,13 @@ class CountryChart extends Component {
     componentDidUpdate(prevProps) {
         if(prevProps.countryName !== this.props.countryName){
             this.setState({countryName: this.props.countryName}, () => {
-                this.setState({countryStatus: this.props.countryStatus}, () => {
-                    this.retrieveDailyData(this.state.countryName, this.state.countryStatus);
-                });
+                this.retrieveDailyData(this.state.countryName);
             });
         }
     }
 
-    retrieveDailyData = (cname, status) => {
-        let url = `https://api.covid19api.com/dayone/country/${cname}/status/${status}`;
+    retrieveDailyData = (cname) => {
+        let url = `https://api.covid19api.com/dayone/country/${cname}`;
 
         axios.get(url).then(
             (res) => {
@@ -57,14 +54,18 @@ class CountryChart extends Component {
         return (
             <div>
                 <Paper>
-                    <Typography variant="h6">{this.state.countryStatus.toUpperCase()} CASES</Typography>
+                    <Typography variant="h6">OVERALL CASES</Typography>
                     <ResponsiveContainer width="100%" height={400}>
-                        <LineChart label="hello" data={this.state.data} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
-                            <Line type="monotone" dataKey="Cases" stoke="#8884d8"/>
+                        <LineChart label="hello" data={this.state.data}>
+                            <Line strokeWidth={2} type="monotone" dataKey="Confirmed" dot={false} stroke="#032357"/>
+                            <Line strokeWidth={2} type="monotone" dataKey="Recovered" dot={false} stroke="#056349"/>
+                            <Line strokeWidth={2} type="monotone" dataKey="Deaths" dot={false} stroke="#8a0e03"/>
+                            <Line strokeWidth={2} type="monotone" dataKey="Active" dot={false} stroke="#6b3b53"/>
                             <CartesianGrid strokeDasharray="3 3" />
                             <Tooltip/>
                             <XAxis dataKey="Date"/>
                             <YAxis/>
+                            <Legend/>
                         </LineChart>
                     </ResponsiveContainer>
                 </Paper>               
@@ -74,8 +75,7 @@ class CountryChart extends Component {
 }
 
 CountryChart.propTypes = {
-    countryName: PropTypes.string.isRequired,
-    countryStatus: PropTypes.string.isRequired
+    countryName: PropTypes.string.isRequired
 }
 
 export default CountryChart;

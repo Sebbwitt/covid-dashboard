@@ -34,7 +34,7 @@ class CountrySummary extends Component {
                         <CountryDetails countryDetails={country}/>
                     </Grid>
                     <Grid item xs={12}>
-                        <CountryChart countryName={this.state.country.Slug} countryStatus="confirmed"/>
+                        <CountryChart countryName={this.state.country.Slug}/>
                     </Grid>
                 </Grid>
             </div>
