@@ -6,7 +6,7 @@ const typography =  {
     },
     body2: {
         color: palette.theme.main,
-    },
+    }
 }
 
 export default typography;
