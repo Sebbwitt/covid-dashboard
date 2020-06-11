@@ -38,6 +38,7 @@ class CountryChart extends Component {
             (res) => {
                 res.data.map((each) => {
                     each.Date = this.getFormattedDate(new Date(each.Date));
+                    return each;
                 });
                 this.setState({data: res.data}, () => {
                     this.setState({apiError: false});
