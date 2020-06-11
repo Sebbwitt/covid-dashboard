@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import {ThemeProvider} from "@material-ui/core/styles";
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
-
 import Topbar from "view/Topbar";
 
 import theme from "theme";

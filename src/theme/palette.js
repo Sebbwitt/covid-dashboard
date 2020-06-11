@@ -1,21 +1,19 @@
-import {colors} from "@material-ui/core";
-
 const white = "#FFFFFF";
-const themeColor = "#003159"
+const themeColor = "#003159";
 
 const palette = {
     primary: {
         contrastText: white,
-        dark: "#003159",
-        main: "#003159",
-        light: "#003159"
+        dark: themeColor,
+        main: themeColor,
+        light: themeColor
     }
     ,
     theme: {
         contrastText: white,
-        dark: "#003159",
-        main: "#003159",
-        light: "#003159"
+        dark: themeColor,
+        main: themeColor,
+        light: themeColor
     }
 }
 

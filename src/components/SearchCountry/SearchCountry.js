@@ -5,7 +5,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import axios from "axios";
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
-import Country from "./components/Country";
+import CountrySummary from "./components/CountrySummary";
 
 import {isEmpty} from "common/Validate";
 
@@ -44,7 +44,7 @@ class SearchCountry extends Component {
 
     getCovidSummary = () => {
         let url = "https://api.covid19api.com/summary";
-        let url_test = "https://my-json-server.typicode.com/sebbwitt/covid-dashboard/summary/";
+        //let url_test = "https://my-json-server.typicode.com/sebbwitt/covid-dashboard/summary/";
         
         axios.get(url)
             .then(
@@ -74,17 +74,17 @@ class SearchCountry extends Component {
                         params.InputProps.startAdornment = (
                             <InputAdornment position="start">
                                 <Public style={{paddingRight:"5px"}}/>
-                                <Typography variant="subtitle1">   Country: </Typography>
+                                <Typography variant="h5">   Country: </Typography>
                             </InputAdornment>
                         )
+                        params.InputProps.className = (classes.resizeTextField);
                         return (<TextField
                             {...params}/>)
                     }}
                 />
-                <Typography variant="h6">{this.state.searchInput}</Typography>
                 { 
-                
-                    !isEmpty(this.state.countrySelected) && <Country country={this.state.countrySelected}/>
+
+                    !isEmpty(this.state.countrySelected) && !this.state.apiError && <CountrySummary country={this.state.countrySelected}/>
                     
                 }
                 
@@ -101,7 +101,10 @@ const styles = (theme) => ({
     autocompleteSearchInput: {
         width: "50%",
         minWidth: "400px",
-        margin: "50px auto 0px"
+        margin: "30px auto 0px"
+    },
+    resizeTextField: {
+        fontSize: theme.typography.h6.fontSize
     }
 })
 
