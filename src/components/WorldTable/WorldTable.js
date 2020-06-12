@@ -78,7 +78,7 @@ class WorldTable extends Component {
                             .map((row, index) => (
                                 <TableRow key={row.Country}>
                                     <TableCell>{constState.pageIndex * constState.rowsPerPage + index + 1}</TableCell>
-                                    <TableCell>{toThousandsComma(row.Country)}</TableCell>
+                                    <TableCell>{row.Country}</TableCell>
                                     <TableCell>{toThousandsComma(row.TotalConfirmed)}</TableCell>
                                     <TableCell>{toThousandsComma(row.TotalRecovered)}</TableCell>
                                     <TableCell>{toThousandsComma(row.TotalConfirmed - row.TotalRecovered)}</TableCell>
