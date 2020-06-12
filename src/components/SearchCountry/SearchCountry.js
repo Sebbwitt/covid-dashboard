@@ -85,7 +85,7 @@ class SearchCountry extends Component {
                             </InputAdornment>
                         )
                         params.InputProps.className = (classes.resizeTextField);
-                        params.inputProps.value = this.state.countrySelectedName;
+                        params.inputProps.placeholder = this.state.countrySelectedName;
                         return (<TextField
                             {...params}/>)
                     }}

@@ -52,16 +52,19 @@ class CountryChart extends Component {
     }
 
     render() {
+
+        const lineStrokeWidth = 5;
+
         return (
             <div>
                 <Paper>
                     <Typography variant="h6">OVERALL CASES</Typography>
                     <ResponsiveContainer width="100%" height={400}>
                         <LineChart label="hello" data={this.state.data}>
-                            <Line strokeWidth={2} type="monotone" dataKey="Confirmed" dot={false} stroke="#032357"/>
-                            <Line strokeWidth={2} type="monotone" dataKey="Recovered" dot={false} stroke="#056349"/>
-                            <Line strokeWidth={2} type="monotone" dataKey="Deaths" dot={false} stroke="#8a0e03"/>
-                            <Line strokeWidth={2} type="monotone" dataKey="Active" dot={false} stroke="#6b3b53"/>
+                            <Line strokeWidth={lineStrokeWidth} type="monotone" dataKey="Confirmed" dot={false} stroke="#032357"/>
+                            <Line strokeWidth={lineStrokeWidth} type="monotone" dataKey="Recovered" dot={false} stroke="#056349"/>
+                            <Line strokeWidth={lineStrokeWidth} type="monotone" dataKey="Deaths" dot={false} stroke="#8a0e03"/>
+                            <Line strokeWidth={lineStrokeWidth} type="monotone" dataKey="Active" dot={false} stroke="#6b3b53"/>
                             <CartesianGrid strokeDasharray="3 3" />
                             <Tooltip/>
                             <XAxis dataKey="Date"/>
