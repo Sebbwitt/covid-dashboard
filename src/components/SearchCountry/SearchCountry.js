@@ -17,9 +17,9 @@ class SearchCountry extends Component {
         this.state = {
             searchInput: "",
             covidSummaryCountries: [],
-            covidSummaryGlobal: {},
             apiError: false,
             countrySelected: {},
+            countrySelectedName: props.country || ""
         }
     }
 
@@ -32,6 +32,8 @@ class SearchCountry extends Component {
             let matchedCountry = (this.state.covidSummaryCountries.filter( (each) => each.Country === this.state.searchInput))[0];
             if (typeof matchedCountry !== "undefined") {
                 this.setState({countrySelected: matchedCountry});
+                this.setState({countrySelectedName: matchedCountry.Country});
+                this.props.history.push(`/${matchedCountry.Country}`);
             } else {
                 this.setState({countrySelected: {}});
             }
@@ -49,8 +51,13 @@ class SearchCountry extends Component {
         axios.get(url)
             .then(
                 (res) => {
-                    this.setState({covidSummaryCountries: res.data.Countries});
-                    this.setState({covidSummaryGlobal: res.data.Global});
+                    this.setState({covidSummaryCountries: res.data.Countries}, () => {
+                        let countryParamArr = this.state.covidSummaryCountries.filter( (each) => each.Country.toLowerCase() === this.state.countrySelectedName.toLowerCase());
+                        if(countryParamArr.length === 1) {
+                            this.setState({countrySelectedName: countryParamArr[0].Country});
+                            this.setState({countrySelected: countryParamArr[0]});
+                        }
+                    });
                 },
                 (err) => {
                     this.setState({apiError: true});
@@ -61,11 +68,11 @@ class SearchCountry extends Component {
     render() {
 
         const classes = this.props.classes;
+        
         return (
             <div className={classes.searchWrapper}>
                 <Typography variant="h4">Search by Country name</Typography>
                 <Autocomplete
-                    id="asd"
                     className={classes.autocompleteSearchInput}
                     options={this.state.covidSummaryCountries}
                     getOptionLabel={(option) => option.Country}
@@ -78,6 +85,7 @@ class SearchCountry extends Component {
                             </InputAdornment>
                         )
                         params.InputProps.className = (classes.resizeTextField);
+                        params.inputProps.value = this.state.countrySelectedName;
                         return (<TextField
                             {...params}/>)
                     }}

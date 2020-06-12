@@ -5,19 +5,20 @@ import Topbar from "view/Topbar";
 
 import theme from "theme";
 import SearchCountryView from "view/SearchCountryView";
+import WorldSummaryView from "view/WorldSummaryView/";
 
 class App extends Component {
 	render() {
 		return (
 			<ThemeProvider theme={theme}>
+				<Topbar/>
 				<Router>
 					<Switch>
-						<Route path="/">
-							<Topbar/>
-							<SearchCountryView/>
-						</Route>
+						<Route exact path="/" component={SearchCountryView} />
+						<Route path="/:country" component={SearchCountryView} />
 					</Switch>
 				</Router>
+				<WorldSummaryView/>
 			</ThemeProvider>
 
 		)

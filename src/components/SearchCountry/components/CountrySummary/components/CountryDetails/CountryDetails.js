@@ -23,16 +23,16 @@ class CountryDetails extends Component {
 
         const classes = this.props.classes;
         const countryDetails = this.props.countryDetails;
-        const updateDate = countryDetails.Date.slice(0,10);
+        const getFormattedDate = () => { let d = (new Date(countryDetails.Date)); return `${d.getDate()}-${d.toLocaleString('default', {month: 'long'})}-${d.getFullYear()}`};
         const activeCases = countryDetails.TotalConfirmed - countryDetails.TotalRecovered - countryDetails.TotalDeaths;
         return (
             <Grid container item spacing={2}>
                 <Grid item xs={12}>
                     <Typography variant="h5">Summary of cases in {countryDetails.Country}</Typography>
-                    <Typography variant="body1">last updated: {updateDate}</Typography>
+                    <Typography variant="body1">last updated: {getFormattedDate()}</Typography>
                 </Grid>
                 <Grid container item xs={12} spacing={1}>
-                    <Grid item xs={6} md={3}>
+                    <Grid item xs={12} sm={6} md={3}>
                         <Card variant="outlined" className={classes.CardStyles}>
                             <CardContent>                         
                                 <Typography variant="h6">Total Confirmed</Typography>
@@ -40,7 +40,7 @@ class CountryDetails extends Component {
                             </CardContent>
                         </Card>
                     </Grid>
-                    <Grid item xs={6} md={3}>
+                    <Grid item xs={12} sm={6} md={3}>
                         <Card variant="outlined" className={classes.CardStyles}>
                             <CardContent> 
                                 <Typography variant="h6">Active Cases</Typography>
@@ -48,7 +48,7 @@ class CountryDetails extends Component {
                             </CardContent>
                         </Card>
                     </Grid>
-                    <Grid item xs={6} md={3}>
+                    <Grid item xs={12} sm={6} md={3}>
                         <Card variant="outlined" className={classes.CardStyles}>
                             <CardContent>
                                 <Typography variant="h6">Total Recovered</Typography>
@@ -56,7 +56,7 @@ class CountryDetails extends Component {
                             </CardContent>
                         </Card>
                     </Grid>
-                    <Grid item xs={6} md={3}>
+                    <Grid item xs={12} sm={6} md={3}>
                         <Card variant="outlined" className={classes.CardStyles}>
                             <CardContent>
                                 <Typography variant="h6">Total Deaths</Typography>
@@ -69,21 +69,6 @@ class CountryDetails extends Component {
         )
     }
 }
-
-/**  
-{
-    "Country": "Afghanistan",
-    "CountryCode": "AF",
-    "Slug": "afghanistan",
-    "NewConfirmed": 575,
-    "TotalConfirmed": 20917,
-    "NewDeaths": 12,
-    "TotalDeaths": 369,
-    "NewRecovered": 296,
-    "TotalRecovered": 2171,
-    "Date": "2020-06-09T08:25:40Z"
-}
-*/
 
 const styles = {
     countryDetails_Wrapper: {
