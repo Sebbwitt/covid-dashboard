@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-
 import {toThousandsComma} from "common/Util";
 
 import { Card, Typography, Grid, withStyles, CardContent } from "@material-ui/core";
@@ -34,9 +33,9 @@ class CountryDetails extends Component {
                     <Typography variant="h5">Summary of cases in {countryDetails.Country}</Typography>
                     <Typography variant="body1">last updated: {getFormattedDate()}</Typography>
                 </Grid>
-                <Grid container item xs={12} spacing={1} className={classes.cd_grid_wrapper}>
+                <Grid container item xs={12} spacing={4} className={classes.cd_grid_wrapper}>
                     <Grid item xs={12} sm={6} md={3}>
-                        <Card variant="outlined" className={classes.CardStyles}>
+                        <Card variant="outlined" className={classes.CardStyles_Confirmed}>
                             <CardContent>                         
                                 <Typography variant="h6">Total Confirmed</Typography>
                                 <Typography variant="h6">{toThousandsComma(countryDetails.TotalConfirmed)}</Typography>
@@ -44,7 +43,7 @@ class CountryDetails extends Component {
                         </Card>
                     </Grid>
                     <Grid item xs={12} sm={6} md={3}>
-                        <Card variant="outlined" className={classes.CardStyles}>
+                        <Card variant="outlined" className={classes.CardStyles_Active}>
                             <CardContent> 
                                 <Typography variant="h6">Active Cases</Typography>
                                 <Typography variant="h6">{toThousandsComma(activeCases)}</Typography>
@@ -52,7 +51,7 @@ class CountryDetails extends Component {
                         </Card>
                     </Grid>
                     <Grid item xs={12} sm={6} md={3}>
-                        <Card variant="outlined" className={classes.CardStyles}>
+                        <Card variant="outlined" className={classes.CardStyles_Recovered}>
                             <CardContent>
                                 <Typography variant="h6">Total Recovered</Typography>
                                 <Typography variant="h6">{toThousandsComma(countryDetails.TotalRecovered)}</Typography>
@@ -60,7 +59,7 @@ class CountryDetails extends Component {
                         </Card>
                     </Grid>
                     <Grid item xs={12} sm={6} md={3}>
-                        <Card variant="outlined" className={classes.CardStyles}>
+                        <Card variant="outlined" className={classes.CardStyles_Deaths}>
                             <CardContent>
                                 <Typography variant="h6">Total Deaths</Typography>
                                 <Typography variant="h6">{toThousandsComma(countryDetails.TotalDeaths)}</Typography>
@@ -72,13 +71,25 @@ class CountryDetails extends Component {
         )
     }
 }
-
 const styles = {
     countryDetails_Wrapper: {
         width: "100%"
     },
-    CardStyles: {
-        width: "100%"
+    CardStyles_Confirmed: {
+        width: "100%",
+        backgroundColor: "rgba(3, 36, 89, 0.7)"
+    },
+    CardStyles_Recovered: {
+        width: "100%",
+        backgroundColor: "rgba(5, 97, 71, 0.7)"
+    },
+    CardStyles_Deaths: {
+        width: "100%",
+        backgroundColor: "rgba(140, 14, 3, 0.7)"
+    },
+    CardStyles_Active: {
+        width: "100%",
+        backgroundColor: "rgba(109, 60, 84, 0.7)"
     },
     cd_grid_wrapper: {
         width: "100%",

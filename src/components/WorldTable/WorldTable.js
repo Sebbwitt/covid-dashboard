@@ -60,7 +60,7 @@ class WorldTable extends Component {
         const emptyRowsNum = constState.rowsPerPage - Math.min(constState.rowsPerPage, rows.length - constState.pageIndex * constState.rowsPerPage);
         return (
             <TableContainer component={Paper} style={{margin:"0 auto",width:"95%"}}>
-                <Table>
+                <Table border={2}>
                     <TableHead>
                         <TableRow>
                             <TableCell>No.</TableCell>

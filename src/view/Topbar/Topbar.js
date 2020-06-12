@@ -9,7 +9,7 @@ function Topbar() {
         <div className={classes.topbar_wrapper}>
             <Grid container>
                 <Grid item xs={12}>
-                    <Typography variant="h3">Coronavirus Summary</Typography>
+                    <Typography variant="h3">Covid-19 Summary</Typography>
                 </Grid>
             </Grid>
         </div>

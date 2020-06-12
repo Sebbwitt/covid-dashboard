@@ -7,6 +7,7 @@ import theme from "theme";
 import SearchCountryView from "view/SearchCountryView";
 import WorldSummaryView from "view/WorldSummaryView/";
 import WorldTableView from "view/WorldTableView/WorldTableView";
+import Footer from "view/Footer";
 
 class App extends Component {
 	render() {
@@ -22,6 +23,7 @@ class App extends Component {
 				</Router>
 				<WorldSummaryView/>
 				<WorldTableView/>
+				<Footer/>
 			</ThemeProvider>
 
 		)
