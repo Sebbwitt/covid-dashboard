@@ -14,6 +14,7 @@ import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
 import TableHead from "@material-ui/core/TableHead";
+import { withStyles } from "@material-ui/core";
 
 class WorldTable extends Component {
     
@@ -55,6 +56,8 @@ class WorldTable extends Component {
     }
 
     render() {
+        const classes = this.props.classes;
+
         const rows = this.state.worldData;
         const constState = this.state;
         const emptyRowsNum = constState.rowsPerPage - Math.min(constState.rowsPerPage, rows.length - constState.pageIndex * constState.rowsPerPage);
@@ -94,38 +97,37 @@ class WorldTable extends Component {
                                 </TableRow>
                             )
                         }
+                        <TableRow>
+                            <TableCell colSpan={6}>
+                                <TablePagination
+                                    className={classes.tablePagination}
+                                    rowsPerPageOptions={[5, 10, 25, { label: 'All', value: rows.length}]}
+                                    component="div"
+                                    count={rows.length}
+                                    labelRowsPerPage="Rows"
+                                    rowsPerPage={this.state.rowsPerPage}
+                                    page={this.state.pageIndex}
+                                    onChangePage={this.handleChangePage}
+                                    onChangeRowsPerPage={this.handleChangeRowsPerPage}
+                                    SelectProps={{
+                                        native: true,
+                                    }}
+                                />
+                            </TableCell>
+                        </TableRow>
                     </TableBody>
                 </Table>
-                <TablePagination
-                    rowsPerPageOptions={[5, 10, 25, { label: 'All', value: rows.length}]}
-                    component="div"
-                    count={rows.length}
-                    rowsPerPage={this.state.rowsPerPage}
-                    page={this.state.pageIndex}
-                    onChangePage={this.handleChangePage}
-                    onChangeRowsPerPage={this.handleChangeRowsPerPage}
-                    SelectProps={{
-                        native: true,
-                    }}
-                />
             </TableContainer>
             </div>
         )
     }
 }
 
-/**
-     {
-     "Country": "Afghanistan",
-    "CountryCode": "AF",
-    "Slug": "afghanistan",
-    "NewConfirmed": 748,
-    "TotalConfirmed": 22890,
-    "NewDeaths": 21,
-    "TotalDeaths": 426,
-    "NewRecovered": 313,
-    "TotalRecovered": 3326,
-    "Date": "2020-06-12T10:47:50Z"
+const styles = {
+    tablePagination: {
+        display: "flex",
+        justifyContent: "center"
     }
- */
-export default WorldTable;
+}
+
+export default withStyles(styles)(WorldTable);
