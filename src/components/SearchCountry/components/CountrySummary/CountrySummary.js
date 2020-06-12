@@ -29,7 +29,7 @@ class CountrySummary extends Component {
 
         return (
             <div className={classes.countrySummary_wrapper}>
-                <Grid container spacing={3}>
+                <Grid container spacing={3} className={classes.c_grid_wrapper}>
                     <Grid container item xs={12} >
                         <CountryDetails countryDetails={country}/>
                     </Grid>
@@ -48,7 +48,11 @@ const styles = {
         padding: "40px 0",
         height: "100%",
         textAlign: "center"
-    }
+    },
+    c_grid_wrapper: {
+        width: "100%",
+        margin: "0 auto"
+    },
 }
 
 CountrySummary.propTypes = {

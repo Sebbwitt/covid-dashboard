@@ -31,7 +31,7 @@ class CountryDetails extends Component {
                     <Typography variant="h5">Summary of cases in {countryDetails.Country}</Typography>
                     <Typography variant="body1">last updated: {getFormattedDate()}</Typography>
                 </Grid>
-                <Grid container item xs={12} spacing={1}>
+                <Grid container item xs={12} spacing={1} className={classes.cd_grid_wrapper}>
                     <Grid item xs={12} sm={6} md={3}>
                         <Card variant="outlined" className={classes.CardStyles}>
                             <CardContent>                         
@@ -76,6 +76,10 @@ const styles = {
     },
     CardStyles: {
         width: "100%"
+    },
+    cd_grid_wrapper: {
+        width: "100%",
+        margin: "0 auto"
     }
 }
 

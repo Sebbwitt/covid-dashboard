@@ -33,7 +33,7 @@ class WorldSummary extends Component {
         return (
             <div className={classes.worldSummary_Wrapper}>
                 <Typography variant="h4" className={classes.header_margin}>World Overview</Typography>
-                <Grid container spacing={2} xs={12}>
+                <Grid container spacing={2} className={classes.grid_wrapper}>
                     <Grid item xs={12} sm={4}>
                         <Card variant="outlined">
                             <CardContent>
@@ -68,6 +68,10 @@ const styles = {
     worldSummary_Wrapper: {
         textAlign: "center",
         width: "100%"
+    },
+    grid_wrapper: {
+        width: "100%",
+        margin: "0 auto"
     },
     header_margin: {
         marginBottom: "20px"

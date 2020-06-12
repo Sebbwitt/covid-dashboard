@@ -14,7 +14,6 @@ class App extends Component {
 				<Topbar/>
 				<Router>
 					<Switch>
-						
 						<Route path="/covid-dashboard/:country" component={SearchCountryView} />
 						<Route path="/covid-dashboard" component={SearchCountryView} />
 					</Switch>
