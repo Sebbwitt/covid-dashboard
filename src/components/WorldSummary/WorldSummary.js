@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
+
+import {toThousandsComma} from "common/Util";
+
 import { Typography, Grid, Card, CardContent, withStyles } from "@material-ui/core";
 
 class WorldSummary extends Component {
@@ -38,7 +41,7 @@ class WorldSummary extends Component {
                         <Card variant="outlined">
                             <CardContent>
                                 <Typography variant="h6">Total Confirmed</Typography>
-                                <Typography variant="h6">{this.state.worldSummaryData.TotalConfirmed}</Typography>
+                                <Typography variant="h6">{toThousandsComma(this.state.worldSummaryData.TotalConfirmed)}</Typography>
                             </CardContent>
                         </Card>
                     </Grid>
@@ -46,7 +49,7 @@ class WorldSummary extends Component {
                         <Card variant="outlined">
                             <CardContent>
                                 <Typography variant="h6">Total Recovered</Typography>
-                                <Typography variant="h6">{this.state.worldSummaryData.TotalRecovered}</Typography>
+                                <Typography variant="h6">{toThousandsComma(this.state.worldSummaryData.TotalRecovered)}</Typography>
                             </CardContent>
                         </Card>
                     </Grid>
@@ -54,7 +57,7 @@ class WorldSummary extends Component {
                         <Card variant="outlined">
                             <CardContent>
                                 <Typography variant="h6">Total Deaths</Typography>
-                                <Typography variant="h6">{this.state.worldSummaryData.TotalDeaths}</Typography>
+                                <Typography variant="h6">{toThousandsComma(this.state.worldSummaryData.TotalDeaths)}</Typography>
                             </CardContent>
                         </Card>
                     </Grid>
@@ -67,7 +70,8 @@ class WorldSummary extends Component {
 const styles = {
     worldSummary_Wrapper: {
         textAlign: "center",
-        width: "100%"
+        width: "95%",
+        margin: "0 auto 50px"
     },
     grid_wrapper: {
         width: "100%",

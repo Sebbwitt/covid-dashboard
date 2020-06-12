@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+
+import {toThousandsComma} from "common/Util";
+
 import { Card, Typography, Grid, withStyles, CardContent } from "@material-ui/core";
 
 class CountryDetails extends Component {
@@ -36,7 +39,7 @@ class CountryDetails extends Component {
                         <Card variant="outlined" className={classes.CardStyles}>
                             <CardContent>                         
                                 <Typography variant="h6">Total Confirmed</Typography>
-                                <Typography variant="h6">{countryDetails.TotalConfirmed}</Typography>
+                                <Typography variant="h6">{toThousandsComma(countryDetails.TotalConfirmed)}</Typography>
                             </CardContent>
                         </Card>
                     </Grid>
@@ -44,7 +47,7 @@ class CountryDetails extends Component {
                         <Card variant="outlined" className={classes.CardStyles}>
                             <CardContent> 
                                 <Typography variant="h6">Active Cases</Typography>
-                                <Typography variant="h6">{activeCases}</Typography>
+                                <Typography variant="h6">{toThousandsComma(activeCases)}</Typography>
                             </CardContent>
                         </Card>
                     </Grid>
@@ -52,7 +55,7 @@ class CountryDetails extends Component {
                         <Card variant="outlined" className={classes.CardStyles}>
                             <CardContent>
                                 <Typography variant="h6">Total Recovered</Typography>
-                                <Typography variant="h6">{countryDetails.TotalRecovered}</Typography>
+                                <Typography variant="h6">{toThousandsComma(countryDetails.TotalRecovered)}</Typography>
                             </CardContent>
                         </Card>
                     </Grid>
@@ -60,7 +63,7 @@ class CountryDetails extends Component {
                         <Card variant="outlined" className={classes.CardStyles}>
                             <CardContent>
                                 <Typography variant="h6">Total Deaths</Typography>
-                                <Typography variant="h6">{countryDetails.TotalDeaths}</Typography>
+                                <Typography variant="h6">{toThousandsComma(countryDetails.TotalDeaths)}</Typography>
                             </CardContent>
                         </Card>
                     </Grid>

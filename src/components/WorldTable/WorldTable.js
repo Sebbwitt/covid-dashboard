@@ -1,18 +1,15 @@
 import React, { Component } from "react";
 import axios from "axios";
+
+import {toThousandsComma} from "common/Util";
+
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
-import TableFooter from '@material-ui/core/TableFooter';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import IconButton from '@material-ui/core/IconButton';
-import FirstPageIcon from '@material-ui/icons/FirstPage';
-import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
-import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
-import LastPageIcon from '@material-ui/icons/LastPage';
 import TableHead from "@material-ui/core/TableHead";
 import { withStyles } from "@material-ui/core";
 
@@ -82,11 +79,11 @@ class WorldTable extends Component {
                             .map((row, index) => (
                                 <TableRow key={row.Country}>
                                     <TableCell>{constState.pageIndex * constState.rowsPerPage + index + 1}</TableCell>
-                                    <TableCell>{row.Country}</TableCell>
-                                    <TableCell>{row.TotalConfirmed}</TableCell>
-                                    <TableCell>{row.TotalRecovered}</TableCell>
-                                    <TableCell>{row.TotalConfirmed - row.TotalRecovered}</TableCell>
-                                    <TableCell>{row.TotalDeaths}</TableCell>
+                                    <TableCell>{toThousandsComma(row.Country)}</TableCell>
+                                    <TableCell>{toThousandsComma(row.TotalConfirmed)}</TableCell>
+                                    <TableCell>{toThousandsComma(row.TotalRecovered)}</TableCell>
+                                    <TableCell>{toThousandsComma(row.TotalConfirmed - row.TotalRecovered)}</TableCell>
+                                    <TableCell>{toThousandsComma(row.TotalDeaths)}</TableCell>
                                 </TableRow>
                             ))
                         }
