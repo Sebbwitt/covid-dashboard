@@ -3,7 +3,9 @@ import WorldTable from "components/WorldTable";
 
 function WorldTableView() {
     return (
+        <div>
             <WorldTable/>
+        </div>
     )
 }
 
