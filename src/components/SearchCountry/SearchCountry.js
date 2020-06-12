@@ -33,7 +33,7 @@ class SearchCountry extends Component {
             if (typeof matchedCountry !== "undefined") {
                 this.setState({countrySelected: matchedCountry});
                 this.setState({countrySelectedName: matchedCountry.Country});
-                this.props.history.push(`/${matchedCountry.Country}`);
+                this.props.history.push(`/covid-dashboard/${matchedCountry.Country}`);
             } else {
                 this.setState({countrySelected: {}});
             }

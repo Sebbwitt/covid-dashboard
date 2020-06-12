@@ -14,8 +14,9 @@ class App extends Component {
 				<Topbar/>
 				<Router>
 					<Switch>
-						<Route exact path="/" component={SearchCountryView} />
-						<Route path="/:country" component={SearchCountryView} />
+						
+						<Route path="/covid-dashboard/:country" component={SearchCountryView} />
+						<Route path="/covid-dashboard" component={SearchCountryView} />
 					</Switch>
 				</Router>
 				<WorldSummaryView/>
